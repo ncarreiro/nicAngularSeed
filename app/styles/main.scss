@@ -2,6 +2,58 @@
 @import "susy/sass/_susy.scss";
 // endbower
 
+// Susy global settings
+
+$susy: (
+  flow: ltr,
+  math: fluid,
+  output: float,
+  gutter-position: after,
+  container: auto,
+  container-position: center,
+  columns: 12,
+  gutters: .25,
+  column-width: false,
+  global-box-sizing: content-box,
+  last-flow: to,
+  debug: (
+    image: show,
+    color: rgba(#66f, .25),
+    output: background,
+    toggle: top right,
+  ),
+  use-custom: (
+    background-image: true,
+    background-options: false,
+    box-sizing: true,
+    clearfix: false,
+    rem: true,
+  )
+);
+
+/* Material Icons Styles */
+
+md-icon.md-default-theme, md-icon {
+  color: #000;
+  display: flex;
+}
+
+/* Rules for sizing the icon. */
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+
+/* Rules for using icons as black on a light background. */
+.material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
+.material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
+
+/* Rules for using icons as white on a dark background. */
+.material-icons.md-light { color: rgba(255, 255, 255, 1); }
+.material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
+
+// Styles
+
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
@@ -9,13 +61,20 @@
   padding: 0.2em 0;
 }
 
-body {
+* {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
   padding: 0;
 }
 
-body { @include container(80em); }
+.container { @include container(1200px); }
 
-nav { @include span(25%); }
+.navbar-header { width: span(2 of 12); background: red; }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
@@ -27,6 +86,7 @@ nav { @include span(25%); }
 
 /* Custom page header */
 .header {
+  background: green;
   border-bottom: 1px solid #e5e5e5;
   margin-bottom: 10px;
 
@@ -71,7 +131,7 @@ nav { @include span(25%); }
 }
 
 /* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
+@media screen and (max-width: 768px) {
   .container {
     max-width: 730px;
   }

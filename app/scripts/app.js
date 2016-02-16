@@ -20,9 +20,10 @@ angular
     'ngTouch',
     'ngMaterial'
   ])
-  .config(function ($routeProvider, $mdThemingProvider) {
-    $mdThemingProvider.theme('default')
-      .dark();
+  .config(function ($routeProvider, $mdIconProvider) {
+    $mdIconProvider
+      .iconSet('social', 'img/icons/sets/social-icons.svg', 24)
+      .defaultIconSet('img/icons/sets/core-icons.svg', 24);
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
