@@ -14,7 +14,7 @@ $susy: (
   columns: 12,
   gutters: .25,
   column-width: false,
-  global-box-sizing: content-box,
+  global-box-sizing: border-box,
   last-flow: to,
   debug: (
     image: show,
@@ -31,11 +31,14 @@ $susy: (
   )
 );
 
+// Susy Container Layouts
+
+$header-container: layout(12 .25 inside);
+
 /* Material Icons Styles */
 
 md-icon.md-default-theme, md-icon {
   color: #000;
-  box-sizing: border-box;
 }
 
 /* Rules for sizing the icon. */
@@ -61,16 +64,14 @@ md-icon.md-default-theme, md-icon {
   padding: 0.2em 0;
 }
 
-* {
-          box-sizing: border-box;
-}
-
 html, body {
   margin: 0;
   padding: 0;
 }
 
-.container { @include container(1200px); }
+.header-container { @include layout($header-container fluid no-gutters) }
+
+.container { @include container(1280px); }
 
 .navbar-header { width: span(2 of 12); background: red; }
 

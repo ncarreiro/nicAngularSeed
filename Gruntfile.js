@@ -19,6 +19,8 @@ module.exports = function (grunt) {
     cdnify: 'grunt-google-cdn'
   });
 
+  grunt.loadNpmTasks('grunt-autoprefixer');
+
   // Configurable paths for the application
   var appConfig = {
     app: require('./bower.json').appPath || 'app',
@@ -173,7 +175,8 @@ module.exports = function (grunt) {
     // Add vendor prefixed styles
     autoprefixer: {
       options: {
-        browsers: ['last 1 version']
+        map: true,
+        browsers: ['last 2 versions']
       },
       dist: {
         files: [{
@@ -493,7 +496,6 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('default', [
-    'autoprefixer',
     'newer:jshint',
     'newer:jscs',
     'test',
