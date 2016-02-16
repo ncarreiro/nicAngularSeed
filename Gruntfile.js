@@ -9,8 +9,6 @@
 
 module.exports = function (grunt) {
 
-  grunt.loadNpmTasks('grunt-postcss');
-
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
 
@@ -41,7 +39,7 @@ module.exports = function (grunt) {
       },
       sass: {
           files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
-          tasks: ['sass:server', 'postcss']
+          tasks: ['sass:server', 'autoprefixer']
       },
       js: {
         files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
@@ -172,23 +170,10 @@ module.exports = function (grunt) {
       server: '.tmp'
     },
 
-    // Add vendor prefixed styles (PostCSS)
-    postcss: {
+    // Add vendor prefixed styles
+    autoprefixer: {
       options: {
-        processors: [
-          require('autoprefixer')({browsers: ['last 2 versions']}).postcss
-        ]
-      },
-      server: {
-        options: {
-          map: true
-        },
-        files: [{
-          expand: true,
-          cwd: '.tmp/styles/',
-          src: '{,*/}*.css',
-          dest: '.tmp/styles/'
-        }]
+        browsers: ['last 1 version']
       },
       dist: {
         files: [{
@@ -469,7 +454,7 @@ module.exports = function (grunt) {
       'clean:server',
       'wiredep',
       'concurrent:server',
-      'postcss',
+      'autoprefixer',
       'connect:livereload',
       'watch'
     ]);
@@ -484,7 +469,7 @@ module.exports = function (grunt) {
     'clean:server',
     'wiredep',
     'concurrent:test',
-    'postcss',
+    'autoprefixer',
     'connect:test',
     'karma'
   ]);
@@ -494,7 +479,7 @@ module.exports = function (grunt) {
     'wiredep',
     'useminPrepare',
     'concurrent:dist',
-    'postcss',
+    'autoprefixer',
     'ngtemplates',
     'concat',
     'ngAnnotate',
@@ -508,7 +493,7 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('default', [
-    'postcss:dist',
+    'autoprefixer',
     'newer:jshint',
     'newer:jscs',
     'test',
