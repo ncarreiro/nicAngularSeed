@@ -9,6 +9,8 @@
 
 module.exports = function (grunt) {
 
+  grunt.loadNpmTasks('grunt-postcss');
+
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
 
@@ -39,7 +41,7 @@ module.exports = function (grunt) {
       },
       sass: {
           files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
-          tasks: ['sass:server', 'autoprefixer']
+          tasks: ['sass:server', 'postcss']
       },
       js: {
         files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
@@ -70,10 +72,10 @@ module.exports = function (grunt) {
     // The actual grunt server settings
     connect: {
       options: {
-        port: 9000,
+        port: 8000,
         // Change this to '0.0.0.0' to access the server from outside.
         hostname: 'localhost',
-        livereload: 35729
+        livereload: 34729
       },
       livereload: {
         options: {
@@ -170,11 +172,11 @@ module.exports = function (grunt) {
       server: '.tmp'
     },
 
-    // Add vendor prefixed styles
+    // Add vendor prefixed styles (PostCSS)
     postcss: {
       options: {
         processors: [
-          require('autoprefixer-core')({browsers: ['last 1 version']})
+          require('autoprefixer')({browsers: ['last 2 versions']}).postcss
         ]
       },
       server: {
@@ -229,7 +231,7 @@ module.exports = function (grunt) {
     // Compiles Sass to CSS and generates necessary files if requested
     sass: {
         options: {
-            style: 'expanded',
+            style: 'compressed',
             require: 'susy',
             includePaths: [
                 'bower_components'
@@ -254,6 +256,8 @@ module.exports = function (grunt) {
             }]
         }
     },
+
+
 
     // Renames files for browser caching purposes
     filerev: {
@@ -465,7 +469,7 @@ module.exports = function (grunt) {
       'clean:server',
       'wiredep',
       'concurrent:server',
-      'postcss:server',
+      'postcss',
       'connect:livereload',
       'watch'
     ]);
@@ -504,6 +508,7 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('default', [
+    'postcss:dist',
     'newer:jshint',
     'newer:jscs',
     'test',

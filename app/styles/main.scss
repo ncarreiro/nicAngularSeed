@@ -35,7 +35,7 @@ $susy: (
 
 md-icon.md-default-theme, md-icon {
   color: #000;
-  display: flex;
+  box-sizing: border-box;
 }
 
 /* Rules for sizing the icon. */
@@ -62,8 +62,6 @@ md-icon.md-default-theme, md-icon {
 }
 
 * {
-  -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
           box-sizing: border-box;
 }
 
