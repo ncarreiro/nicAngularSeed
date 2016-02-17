@@ -1,5 +1,6 @@
 // bower:scss
 @import "susy/sass/_susy.scss";
+@import 'bower_components/reset-css/_reset.scss';
 // endbower
 
 // Susy global settings
@@ -17,7 +18,7 @@ $susy: (
   global-box-sizing: border-box,
   last-flow: to,
   debug: (
-    image: show,
+    image: hide,
     color: rgba(#66f, .25),
     output: background,
     toggle: top right,
@@ -31,9 +32,13 @@ $susy: (
   )
 );
 
-// Susy Container Layouts
-
-$header-container: layout(12 .25 inside);
+// Global box-sizing: border-box
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: border-box;
+}
 
 /* Material Icons Styles */
 
@@ -69,11 +74,124 @@ html, body {
   padding: 0;
 }
 
-.header-container { @include layout($header-container fluid no-gutters) }
+body {
+  font-family: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma,  sans-serif;
+}
 
-.container { @include container(1280px); }
+.container {
+  @include container(1280px);
+  padding: 0 40px;
+  .row {
+    clear: both;
+    overflow: hidden;
+    margin: 24px 0;
+    &:last-of-type {
+      padding: 24px 0 0 0;
+    }
+  }
+}
 
-.navbar-header { width: span(2 of 12); background: red; }
+.navbar {
+  line-height: 65px;
+  height: 65px;
+}
+
+.nav-header {
+  height: 50px;
+  background-color: #3c465a;
+  .nav-filter-buttons {
+    @include span(6 of 12);
+    overflow: hidden;
+    md-tabs[md-border-bottom] md-tabs-wrapper {
+      border: 0;
+      md-tabs-canvas {
+        height: 50px;
+        md-pagination-wrapper {
+          height: 50px;
+          .md-tab {
+            cursor: pointer;
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+  .nav-filter-search {
+    @include span(6 of 12 last);
+    overflow: hidden;
+    md-input-container {
+      float: left;
+      margin: 0;
+      height: 50px;
+      line-height: 40px;
+      .md-input, md-select {
+        height: 50px;
+      }
+      .md-errors-spacer {
+        display: none;
+      }
+    }
+  }
+}
+
+.home {
+  .top-banner {
+    @include container(1200px);
+    padding: 0 20px;
+    position: relative;
+    height: 42px;
+    line-height: 42px;
+    border-radius: 2px;
+    background-color: #f8f8f8;
+    .text {
+      @include span(12 of 12);
+    }
+    .image {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 330px;
+      height: 42px;
+    }
+  }
+  .hero-section {
+    .filterlist {
+      @include span(2 of 12);
+      color: #0f3296;
+      ul {
+        li {
+          margin: 10px 0;
+        }
+      }
+    }
+    .main-offer {
+      @include span(5 of 12);
+      height: 375px;
+      background-color: #f2f2f2;
+      border-style: solid;
+      border-width: 1px;
+      border-color: #e4e4e4;
+      border-radius: 2px;
+      &:last-of-type {
+        @include span(5 of 12 last);
+      }
+    }
+  }
+  .recent-section {
+    .recent-offer {
+      @include span(3 of 12);
+      height: 304px;
+      background-color: #f2f2f2;
+      border-style: solid;
+      border-width: 1px;
+      border-color: #e4e4e4;
+      border-radius: 2px;
+      &:last-of-type {
+        @include span(3 of 12 last);
+      }
+    }
+  }
+}
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
@@ -85,10 +203,6 @@ html, body {
 
 /* Custom page header */
 .header {
-  background: green;
-  border-bottom: 1px solid #e5e5e5;
-  margin-bottom: 10px;
-
   /* Make the masthead heading the same height as the navigation */
   h3 {
     margin-top: 0;

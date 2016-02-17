@@ -25,22 +25,39 @@
 
     <!-- Add your site or application content here -->
     <div class="header">
-        <div class="header-container">
+        <div class="container">
           <div class="navbar navbar-default" role="navigation">
               <div class="navbar-header">
                 <a class="navbar-brand" href="#/">miPromo</a>
               </div>
-
-              <div class="collapse">
-
-                <ul class="nav navbar-nav">
-                  <li class="active"><a href="#/">Home</a></li>
-                  <li><a ng-href="#/about">About</a></li>
-                  <li><a ng-href="#/">Contact</a></li>
-                </ul>
-              </div>
           </div>
         </div>
+    </div>
+
+    <div class="nav-header">
+      <div class="container">
+        <div class="nav-filter-buttons">
+          <md-tabs md-border-bottom md-autoselect>
+            <md-tab go-click="/main" label="Productos"></md-tab>
+            <md-tab go-click="/about" label="Servicios"></md-tab>
+            <md-tab label="Descuentos"></md-tab>
+            <md-tab label="Cupones"></md-tab>
+          </md-tabs>
+        </div>
+        <div class="nav-filter-search">
+          <md-input-container md-no-float>
+            <input type="search" placeholder="Buscar cupones, descuentos y comercios">
+          </md-input-container>
+          <md-input-container md-no-float>
+            <label>San José</label>
+            <md-select ng-model="ctrl.userState">
+              <md-option ng-repeat="state in ctrl.states" value="{{state.abbrev}}">
+                {{state.abbrev}}
+              </md-option>
+            </md-select>
+          </md-input-container>
+        </div>
+      </div>
     </div>
 
     <div class="container">
@@ -49,20 +66,20 @@
 
     <div class="footer">
       <div class="container">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
+        <p>©1995-2016 BAC International Bank Todos los derechos reservados. Mipromo es marca registrada. 2016</p>
       </div>
     </div>
 
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-     <script>
-       !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
-       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
-       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
-       }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    <script>
+      !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
+      (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
+      r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
+      }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-       ga('create', 'UA-XXXXX-X');
-       ga('send', 'pageview');
+      ga('create', 'UA-XXXXX-X');
+      ga('send', 'pageview');
     </script>
 
     <!-- build:js(.) scripts/vendor.js -->
@@ -79,12 +96,11 @@
     <script src="bower_components/angular-material/angular-material.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
-
-        <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/about.js"></script>
-        <script src="scripts/controllers/discounts.js"></script>
-        <!-- endbuild -->
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/about.js"></script>
+    <script src="scripts/controllers/discounts.js"></script>
+    <!-- endbuild -->
 </body>
 </html>
