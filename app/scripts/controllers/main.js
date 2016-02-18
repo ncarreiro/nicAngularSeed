@@ -8,5 +8,6 @@
  * Controller of the miPromoApp
  */
 angular.module('miPromoApp')
-  .controller('MainCtrl', function () {
+  .controller('MainCtrl', function ($scope, $filter) {
+    $scope.currency = $filter('currency')(16165165);
   });

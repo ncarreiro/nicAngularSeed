@@ -1,6 +1,6 @@
 // bower:scss
-@import "susy/sass/_susy.scss";
-@import 'bower_components/reset-css/_reset.scss';
+@import 'susy/sass/_susy.scss';
+@import 'reset-css/_reset.scss';
 // endbower
 
 // Susy global settings
@@ -31,6 +31,11 @@ $susy: (
     rem: true,
   )
 );
+
+$total-columns: 12;
+$column-width: 80px;
+$gutter-width: 20px;
+$grid-padding: 80px;
 
 // Global box-sizing: border-box
 html {
